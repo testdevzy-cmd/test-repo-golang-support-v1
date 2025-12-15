@@ -337,7 +337,7 @@ func main() {
 
 	// Structs
 	fmt.Println("2. Structs:")
-	p := Person{Name: "Alice", Age: 30}
+	p := Person{Name: "Alice", Age: 40}
 	fmt.Printf("Person: %+v\n", p)
 	fmt.Printf("Name: %s\n", p.GetName())
 	p.SetAge(31)
