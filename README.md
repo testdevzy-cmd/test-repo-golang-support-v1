@@ -1,0 +1,1 @@
+# test-repo-golang-support-v1
