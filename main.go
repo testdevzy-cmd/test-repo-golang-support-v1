@@ -463,6 +463,16 @@ func main() {
 	customErr := &ValidationError{Field: "email", Message: "invalid format"}
 	fmt.Printf("Custom error: %v\n\n", customErr)
 
+	fmt.Println("19. Utils Testing:")
+	company := Company{Name: "TechCorp", Industry: "Software"}
+	var companySpeaker Speaker = company
+	fmt.Printf("Company speaker: %s\n", companySpeaker.Speak())
+
+	person := Person{Name: "David", Age: 28}
+	formatted := FormatPerson(person)
+	fmt.Printf("Formatted: %s\n", formatted)
+	fmt.Println()
+
 	fmt.Println("=== Demo Complete ===")
 }
 
