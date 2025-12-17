@@ -39,6 +39,16 @@ type Employee struct {
 	Position string
 }
 
+// Product struct for testing embeddings
+type Product struct {
+	ID          string
+	Name        string
+	Price       float64
+	InStock     bool
+	Tags        []string
+	Metadata    map[string]interface{}
+}
+
 // Methods - Value receiver
 func (p Person) GetName() string {
 	return p.Name
