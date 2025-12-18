@@ -491,7 +491,7 @@ func main() {
 	empID := ProcessEmployee(emp)
 	fmt.Printf("Employee ID: %d\n", empID)
 
-	product := CreateProduct("Laptop", 999.99)
+	product := CreateProduct(999.99, "Laptop")
 	fmt.Printf("Product: %+v\n", product)
 
 	validErr := ValidatePerson(&p)
@@ -508,6 +508,18 @@ func main() {
 	}
 	name := mgr.GetName()
 	fmt.Printf("Manager name: %s\n", name)
+
+	discountAmount := ComputeDiscount(50, 1000.0)
+	fmt.Printf("Discount: %d\n", discountAmount)
+
+	savedData := TestGraphSave(12345)
+	fmt.Printf("Saved: %s\n", savedData)
+
+	personID := ProcessEmployee(p)
+	fmt.Printf("Person as Employee ID: %d\n", personID)
+
+	managerName := "Manager: " + mgr.GetName()
+	fmt.Printf("Manager display: %s\n", managerName)
 	fmt.Println()
 
 	fmt.Println("21. Processors Testing:")
