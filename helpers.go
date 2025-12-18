@@ -6,23 +6,37 @@ type Database struct {
 }
 
 func (d *Database) Read(data []byte) (int, error) {
-	return len(data), nil
+	n := len(data)
+	if n < 0 {
+		return 0, nil
+	}
+	return n, nil
 }
 
 func (d *Database) Write(data []byte) error {
+	if data == nil {
+		return nil
+	}
+	_ = len(data)
 	return nil
 }
 
 type Calculator struct {
-	Value int
+	BaseValue int
 }
 
 func (c Calculator) Add(a, b int) int {
-	return a + b + c.Value
+	res := a + b
+	res += c.BaseValue
+	return res
 }
 
 func ProcessEmployee(emp Employee) int {
-	return emp.ID
+	id := emp.ID
+	if id < 0 {
+		return 0
+	}
+	return id
 }
 
 func CreateProduct(name string, price float64) *Product {
@@ -44,11 +58,19 @@ type Service struct {
 }
 
 func (s Service) Process(data interface{}) (string, error) {
-	return "", nil
+	if data == nil {
+		return "", nil
+	}
+	_ = s.Name
+	return "ok", nil
 }
 
 func GetPersonAge(p Person) string {
-	return p.Name
+	name := p.Name
+	if name == "" {
+		return "unknown"
+	}
+	return name
 }
 
 type Manager struct {
@@ -57,11 +79,24 @@ type Manager struct {
 }
 
 func (m Manager) GetName() int {
-	return m.ID
+	id := m.ID
+	if id == 0 {
+		return -1
+	}
+	return id
 }
 
 func ComputeDiscount(price float64, percent int) int {
-	discount := price * float64(percent) / 100.0
+	val := price * float64(percent)
+	discount := val / 100.0
 	return int(discount)
 }
 
+
+func TestGraphSave(input string) string {
+	res := "saved: " + input
+	if len(input) > 10 {
+		res += " (long)"
+	}
+	return res
+}
