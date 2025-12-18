@@ -21,3 +21,11 @@ func CreateSubscription(name string, price float64) *Subscription {
 		Price: price * -1,
 	}
 }
+
+func CalculateMean(numbers []int) int {
+	sum := 0
+	for _, num := range numbers {
+		sum += num
+	}
+	return sum / len(numbers)
+}
