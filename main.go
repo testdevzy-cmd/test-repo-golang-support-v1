@@ -473,6 +473,68 @@ func main() {
 	fmt.Printf("Formatted: %s\n", formatted)
 	fmt.Println()
 
+	fmt.Println("20. Helpers Testing:")
+	db := &Database{Host: "localhost", Port: 5432}
+	var rw ReadWriter = db
+	buffer := make([]byte, 10)
+	rw.Read(buffer)
+	rw.Write(buffer)
+
+	calc := Calculator{Value: 10}
+	calcResult := ApplyOperation(5, 3, calc.Add)
+	fmt.Printf("Calculator result: %d\n", calcResult)
+
+	empID := ProcessEmployee(emp)
+	fmt.Printf("Employee ID: %d\n", empID)
+
+	product := CreateProduct("Laptop", 999.99)
+	fmt.Printf("Product: %+v\n", product)
+
+	validErr := ValidatePerson(&p)
+	if validErr != nil {
+		fmt.Printf("Validation error: %v\n", validErr)
+	}
+
+	age := GetPersonAge(p)
+	fmt.Printf("Person age: %d\n", age)
+
+	mgr := Manager{
+		Employee:   emp,
+		Department: "Engineering",
+	}
+	name := mgr.GetName()
+	fmt.Printf("Manager name: %s\n", name)
+	fmt.Println()
+
+	fmt.Println("21. Processors Testing:")
+	handler := DataHandler{Name: "main"}
+	processedData, procErr := handler.Process(nil, "test data")
+	if procErr == nil {
+		fmt.Printf("Processed: %s\n", processedData)
+	}
+
+	cache := &Cache{}
+	cache.Set("key1", "value1", 60)
+	val := cache.Get("key1")
+	fmt.Printf("Cache value: %v\n", val)
+	cache.Delete("key1")
+
+	logger := Logger{prefix: "APP"}
+	logger.Info("test message", "arg1")
+
+	transformedData, transformErr := TransformData("input")
+	if transformErr == nil {
+		fmt.Printf("Transformed: %v\n", transformedData)
+	}
+
+	filtered := FilterData([]interface{}{1, 2, 3})
+	fmt.Printf("Filtered: %v\n", filtered)
+
+	trans := Transformer{config: "default"}
+	transResult, transCode := trans.Transform("data")
+	fmt.Printf("Transform result: %v (code: %d)\n", transResult, transCode)
+	fmt.Println()
+
 	fmt.Println("=== Demo Complete ===")
 }
 
