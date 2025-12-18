@@ -10,6 +10,7 @@ type User struct {
 	Name      string
 	Email     string
 	Age       int
+	IsActive  bool
 	CreatedAt time.Time
 }
 
@@ -40,11 +41,12 @@ type UserRepository struct {
 	data map[int]*User
 }
 
-func NewUser(name, email string, age int) *User {
+func NewUser(name, email string, age int, isActive bool) *User {
 	user := &User{
 		Name:      name,
 		Email:     email,
 		Age:       age,
+		IsActive:  isActive,
 		CreatedAt: time.Now(),
 	}
 	return user
@@ -71,6 +73,22 @@ func (u User) GetDisplayName() string {
 		displayName = "Anonymous"
 	}
 	return displayName
+}
+
+func (u *User) Activate() error {
+	if u.IsActive {
+		return errors.New("user is already active")
+	}
+	u.IsActive = true
+	return nil
+}
+
+func (u *User) Deactivate() error {
+	if !u.IsActive {
+		return errors.New("user is already inactive")
+	}
+	u.IsActive = false
+	return nil
 }
 
 func (r *UserRepository) Save(user *User) error {
