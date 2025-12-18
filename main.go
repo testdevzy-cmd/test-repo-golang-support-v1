@@ -78,6 +78,10 @@ type Reader interface {
 	Read([]byte) (int, error)
 }
 
+type Handler interface {
+	Handle(req *Request) (*Response, error)
+}
+
 // Custom types
 type Status int
 type ID string
