@@ -88,3 +88,11 @@ func FormatCurrency(amount float64, currency string) string {
 	formatted := fmt.Sprintf("%.2f %s", amount, currency)
 	return formatted
 }
+
+func ConvertToPercentage(value float64, total float64) float64 {
+	if total == 0 {
+		return 0
+	}
+	percentage := (value / total) * 100
+	return percentage
+}
