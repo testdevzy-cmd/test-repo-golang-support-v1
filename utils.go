@@ -96,3 +96,10 @@ func ConvertToPercentage(value float64, total float64) float64 {
 	percentage := (value / total) * 100
 	return percentage
 }
+
+func IsEmpty(str string) bool {
+	if str == "" {
+		return true
+	}
+	return false
+}
