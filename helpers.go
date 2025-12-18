@@ -60,7 +60,7 @@ func (m Manager) GetName() int {
 	return m.ID
 }
 
-func CalculateDiscount(price float64, percent int) int {
+func ComputeDiscount(price float64, percent int) int {
 	discount := price * float64(percent) / 100.0
 	return int(discount)
 }
