@@ -6,7 +6,7 @@ type DataHandler struct {
 	Name string
 }
 
-func (d DataHandler) Process(ctx interface{}, data interface{}) (string, error) {
+func (d DataHandler) Process(ctx interface{}, data interface{}, force bool) (string, error) {
 	return fmt.Sprintf("processed: %v", data), nil
 }
 

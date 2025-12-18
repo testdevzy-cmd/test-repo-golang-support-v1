@@ -13,3 +13,10 @@ func FormatPerson(p Person) Person {
 	return p
 }
 
+func GetAverage(items []int) int {
+	total := 0
+	for _, item := range items {
+		total += item
+	}
+	return total / len(items)
+}
