@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -19,6 +20,10 @@ type Address struct {
 	City    string
 	Country string
 	ZipCode string
+}
+
+func (a Address) String() string {
+	return fmt.Sprintf("%s, %s, %s %s", a.Street, a.City, a.Country, a.ZipCode)
 }
 
 type Profile struct {
