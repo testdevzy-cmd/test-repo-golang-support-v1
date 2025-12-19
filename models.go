@@ -7,12 +7,12 @@ import (
 )
 
 type User struct {
-	ID           int
-	FullName     string
-	EmailAddress string
-	Age          int
-	IsActive     bool
-	CreatedAt    time.Time
+	ID             int
+	NameAndSurname string
+	EmailAddr      string
+	Age            int
+	IsActive       bool
+	CreatedAt      time.Time
 }
 
 type Address struct {
@@ -55,11 +55,11 @@ type UserRepository struct {
 
 func NewUser(name, email string, age int, isActive bool) *User {
 	user := &User{
-		FullName:     name,
-		EmailAddress: email,
-		Age:          age,
-		IsActive:     isActive,
-		CreatedAt:    time.Now(),
+		NameAndSurname: name,
+		EmailAddr:      email,
+		Age:            age,
+		IsActive:       isActive,
+		CreatedAt:      time.Now(),
 	}
 	return user
 }
@@ -68,7 +68,7 @@ func (u *User) UpdateEmail(newEmail string) error {
 	if newEmail == "" {
 		return errors.New("email cannot be empty")
 	}
-	u.EmailAddress = newEmail
+	u.EmailAddr = newEmail
 	return nil
 }
 
@@ -80,7 +80,7 @@ func (u *User) IsAdult() bool {
 }
 
 func (u User) GetDisplayName() string {
-	displayName := u.FullName
+	displayName := u.NameAndSurname
 	if displayName == "" {
 		displayName = "Anonymous"
 	}
@@ -128,10 +128,10 @@ func (r *UserRepository) Delete(id int) error {
 }
 
 func (p *Profile) Validate() error {
-	if p.FullName == "" {
+	if p.NameAndSurname == "" {
 		return errors.New("name is required")
 	}
-	if p.EmailAddress == "" {
+	if p.EmailAddr == "" {
 		return errors.New("email is required")
 	}
 	return nil
