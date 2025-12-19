@@ -26,6 +26,13 @@ func (a Address) String() string {
 	return fmt.Sprintf("%s, %s, %s %s", a.Street, a.City, a.Country, a.ZipCode)
 }
 
+func (a Address) HasZipCode() bool {
+	if len(a.ZipCode) > 0 {
+		return true
+	}
+	return false
+}
+
 type Profile struct {
 	User
 	Address Address
