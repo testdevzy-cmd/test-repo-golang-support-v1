@@ -16,10 +16,14 @@ func ValidateEmail(email string) bool {
 	return true
 }
 
-func FormatGreeting(name string) string {
+func FormatGreeting(name string, title string) string {
 	greeting := "Hello"
 	if name != "" {
-		greeting = fmt.Sprintf("Hello, %s!", name)
+		if title != "" {
+			greeting = fmt.Sprintf("Hello, %s %s!", title, name)
+		} else {
+			greeting = fmt.Sprintf("Hello, %s!", name)
+		}
 	}
 	return greeting
 }
@@ -102,4 +106,12 @@ func IsEmpty(str string) bool {
 		return true
 	}
 	return false
+}
+
+func ReverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }
