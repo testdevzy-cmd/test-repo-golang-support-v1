@@ -16,24 +16,27 @@ func ValidateEmail(email string) bool {
 	return true
 }
 
-func FormatGreeting(title, name string, isFormal bool) string {
+func FormatGreeting(name, title string) string {
 	greeting := "Hello"
 	if name != "" {
-		if isFormal {
-			if title != "" {
-				greeting = fmt.Sprintf("Greetings, %s %s!", title, name)
-			} else {
-				greeting = fmt.Sprintf("Greetings, %s!", name)
-			}
+		if title != "" {
+			greeting = fmt.Sprintf("Hello, %s %s!", title, name)
 		} else {
-			if title != "" {
-				greeting = fmt.Sprintf("Hello, %s %s!", title, name)
-			} else {
-				greeting = fmt.Sprintf("Hello, %s!", name)
-			}
+			greeting = fmt.Sprintf("Hello, %s!", name)
 		}
 	}
 	return greeting
+}
+
+func GenerateReport(names []string) string {
+	if len(names) == 0 {
+		return "No data to report"
+	}
+	report := "Report Summary:\n"
+	for i, name := range names {
+		report += fmt.Sprintf("%d. %s\n", i+1, name)
+	}
+	return report
 }
 
 func CalculateSum(numbers []int) int {
