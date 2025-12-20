@@ -8,7 +8,7 @@ import (
 
 type User struct {
 	ID           int
-	FullName     string
+	PrimaryName  string
 	EmailAddress string
 	Age          int
 	IsActive     bool
@@ -53,15 +53,18 @@ type UserRepository struct {
 	data map[int]*User
 }
 
-func NewUser(name, email string, age int, isActive bool) *User {
+func NewUser(name, email string, age int, isActive bool) (*User, error) {
+	if name == "" {
+		return nil, errors.New("name cannot be empty")
+	}
 	user := &User{
-		FullName:     name,
+		PrimaryName:  name,
 		EmailAddress: email,
 		Age:          age,
 		IsActive:     isActive,
 		CreatedAt:    time.Now(),
 	}
-	return user
+	return user, nil
 }
 
 func (u *User) UpdateEmail(newEmail string) error {
@@ -80,7 +83,7 @@ func (u *User) IsAdult() bool {
 }
 
 func (u User) GetDisplayName() string {
-	displayName := u.FullName
+	displayName := u.PrimaryName
 	if displayName == "" {
 		displayName = "Anonymous"
 	}
@@ -128,7 +131,7 @@ func (r *UserRepository) Delete(id int) error {
 }
 
 func (p *Profile) Validate() error {
-	if p.FullName == "" {
+	if p.PrimaryName == "" {
 		return errors.New("name is required")
 	}
 	if p.EmailAddress == "" {
@@ -144,7 +147,7 @@ func (u *User) UpdateProfile(name, email string) error {
 	if email == "" {
 		return errors.New("email cannot be empty")
 	}
-	u.FullName = name
+	u.PrimaryName = name
 	u.EmailAddress = email
 	return nil
 }

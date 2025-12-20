@@ -6,11 +6,14 @@ import (
 	"strings"
 )
 
-func ValidateEmail(email string) bool {
+func ValidateEmail(email string, strict bool) bool {
 	if email == "" {
 		return false
 	}
 	if !strings.Contains(email, "@") {
+		return false
+	}
+	if strict && !strings.Contains(email, ".") {
 		return false
 	}
 	return true
