@@ -1,46 +1,38 @@
 package services
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/test-repo/test-repo-golang-support-v1/models"
+	"github.com/test-repo/test-repo-golang-support-v1/repositories"
 )
 
 type UserService struct {
-	users map[int]*models.User
+	repo *repositories.UserRepository
 }
 
-func NewUserService() *UserService {
+func NewUserService(repo *repositories.UserRepository) *UserService {
 	return &UserService{
-		users: make(map[int]*models.User),
+		repo: repo,
 	}
 }
 
 func (s *UserService) CreateUser(id int, name, email string, age int) (*models.User, error) {
-	if _, exists := s.users[id]; exists {
-		return nil, errors.New("user already exists")
-	}
 	user := models.NewUser(name, email, age, true)
 	user.ID = id
-	s.users[id] = user
+	err := s.repo.Save(user)
+	if err != nil {
+		return nil, err
+	}
 	return user, nil
 }
 
 func (s *UserService) GetUser(id int) (*models.User, error) {
-	user, exists := s.users[id]
-	if !exists {
-		return nil, errors.New("user not found")
-	}
-	return user, nil
+	return s.repo.GetByID(id)
 }
 
 func (s *UserService) GetAllUsers() []*models.User {
-	result := make([]*models.User, 0, len(s.users))
-	for _, user := range s.users {
-		result = append(result, user)
-	}
-	return result
+	return s.repo.ListAll()
 }
 
 func (s *UserService) PrintUserReport(id int) string {

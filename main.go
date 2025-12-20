@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/test-repo/test-repo-golang-support-v1/handlers"
+	"github.com/test-repo/test-repo-golang-support-v1/repositories"
 	"github.com/test-repo/test-repo-golang-support-v1/services"
 	"github.com/test-repo/test-repo-golang-support-v1/utils"
 )
@@ -10,27 +12,19 @@ import (
 func main() {
 	fmt.Println("=== Go Application Started ===")
 
-	userService := services.NewUserService()
+	// Initialize Layers
+	userRepo := repositories.NewUserRepository()
+	userService := services.NewUserService(userRepo)
+	userHandler := handlers.NewUserHandler(userService)
 
-	user, err := userService.CreateUser(1, "Alice", "alice@example.com", 30)
-	if err != nil {
-		fmt.Printf("Error creating user: %v\n", err)
-		return
-	}
-	fmt.Printf("Created user via service: %+v\n", user)
+	// Flow via Handler
+	userHandler.HandleCreateUser(1, "Alice", "alice@example.com", 30)
+	userHandler.HandleGetReport(1)
 
-	isValid := utils.ValidateEmail(user.EmailAddress)
-	fmt.Printf("Email valid: %t\n", isValid)
-
-	greeting := utils.FormatGreeting(user.FullName, "Ms.")
-	fmt.Printf("%s\n", greeting)
-
-	report := userService.PrintUserReport(1)
-	fmt.Println(report)
-
-	nums := []int{1, 2, 3, 4, 5}
-	total := utils.CalculateSum(nums)
-	fmt.Printf("Sum of numbers: %d\n", total)
+	// Direct Utils usage
+	nums := []int{10, 20, 30}
+	sum := utils.CalculateSum(nums)
+	fmt.Printf("Final Sum Check: %d\n", sum)
 
 	fmt.Println("=== Application Complete ===")
 }
