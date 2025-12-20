@@ -16,13 +16,21 @@ func ValidateEmail(email string) bool {
 	return true
 }
 
-func FormatGreeting(name string, title string) string {
+func FormatGreeting(title, name string, isFormal bool) string {
 	greeting := "Hello"
 	if name != "" {
-		if title != "" {
-			greeting = fmt.Sprintf("Hello, %s %s!", title, name)
+		if isFormal {
+			if title != "" {
+				greeting = fmt.Sprintf("Greetings, %s %s!", title, name)
+			} else {
+				greeting = fmt.Sprintf("Greetings, %s!", name)
+			}
 		} else {
-			greeting = fmt.Sprintf("Hello, %s!", name)
+			if title != "" {
+				greeting = fmt.Sprintf("Hello, %s %s!", title, name)
+			} else {
+				greeting = fmt.Sprintf("Hello, %s!", name)
+			}
 		}
 	}
 	return greeting
