@@ -3,8 +3,6 @@ package utils
 import (
 	"fmt"
 	"strings"
-
-	"github.com/test-repo/test-repo-golang-support-v1/models"
 )
 
 func ValidateEmail(email string) bool {
@@ -15,17 +13,6 @@ func ValidateEmail(email string) bool {
 		return false
 	}
 	return true
-}
-
-func PrintUserSummary(u *models.User) string {
-	if u == nil {
-		return "User is nil"
-	}
-	activeStatus := "Inactive"
-	if u.IsActive {
-		activeStatus = "Active"
-	}
-	return fmt.Sprintf("User: %s (%s) - Status: %s", u.FullName, u.EmailAddress, activeStatus)
 }
 
 func FormatGreeting(name, title string) string {
