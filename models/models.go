@@ -6,12 +6,12 @@ import (
 )
 
 type User struct {
-	ID              int
-	DisplayIdentity string
-	EmailAddress    string
-	Age             int
-	IsActive        bool
-	CreatedAt       time.Time
+	ID           int
+	FullName     string
+	EmailAddress string
+	Age          int
+	IsActive     bool
+	CreatedAt    time.Time
 }
 
 type Address struct {
@@ -28,24 +28,24 @@ func (u *User) UpdateProfile(name, email string) error {
 	if email == "" {
 		return errors.New("email cannot be empty")
 	}
-	u.DisplayIdentity = name
+	u.FullName = name
 	u.EmailAddress = email
 	return nil
 }
 
 func NewUser(name, email string, age int, isActive bool) *User {
 	return &User{
-		DisplayIdentity: name,
-		EmailAddress:    email,
-		Age:             age,
-		IsActive:        isActive,
-		CreatedAt:       time.Now(),
+		FullName:     name,
+		EmailAddress: email,
+		Age:          age,
+		IsActive:     isActive,
+		CreatedAt:    time.Now(),
 	}
 }
 
 func (u *User) GetDisplayName() string {
-	if u.DisplayIdentity == "" {
+	if u.FullName == "" {
 		return "Anonymous"
 	}
-	return u.DisplayIdentity
+	return u.FullName
 }
