@@ -44,3 +44,7 @@ func CalculateSum(numbers []int) int {
 	}
 	return total
 }
+
+func IsEmpty(str string) bool {
+	return str == ""
+}

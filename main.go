@@ -12,16 +12,25 @@ import (
 func main() {
 	fmt.Println("=== Go Application Started ===")
 
-	// Initialize Layers
+	
 	userRepo := repositories.NewUserRepository()
 	userService := services.NewUserService(userRepo)
 	userHandler := handlers.NewUserHandler(userService)
 
-	// Flow via Handler
+	
+	productRepo := repositories.NewProductRepository()
+	productService := services.NewProductService(productRepo)
+	productHandler := handlers.NewProductHandler(productService)
+
+	
 	userHandler.HandleCreateUser(1, "Alice", "alice@example.com", 30)
 	userHandler.HandleGetReport(1)
 
-	// Direct Utils usage
+	
+	productHandler.HandleAddProduct("Laptop", 1200.50, "LAP-001")
+	productHandler.HandleAddProduct("Mouse", 25.00, "MOU-002")
+
+	
 	nums := []int{10, 20, 30}
 	sum := utils.CalculateSum(nums)
 	fmt.Printf("Final Sum Check: %d\n", sum)
