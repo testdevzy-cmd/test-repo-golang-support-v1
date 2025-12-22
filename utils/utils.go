@@ -3,6 +3,8 @@ package utils
 import (
 	"fmt"
 	"strings"
+
+	"github.com/test-repo/test-repo-golang-support-v1/models"
 )
 
 func ValidateEmail(email string) bool {
@@ -13,6 +15,20 @@ func ValidateEmail(email string) bool {
 		return false
 	}
 	return true
+}
+
+func ExtractUserInitials(u *models.User) string {
+	if u == nil || u.FullName == "" {
+		return "NA"
+	}
+	parts := strings.Split(u.FullName, " ")
+	initials := ""
+	for _, part := range parts {
+		if len(part) > 0 {
+			initials += strings.ToUpper(part[:1])
+		}
+	}
+	return initials
 }
 
 func FormatGreeting(name, title string) string {
