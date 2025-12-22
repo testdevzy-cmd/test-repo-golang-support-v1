@@ -7,7 +7,7 @@ import (
 
 type User struct {
 	ID           int
-	FullName     string
+	ProfileName  string
 	EmailAddress string
 	Age          int
 	IsActive     bool
@@ -28,14 +28,14 @@ func (u *User) UpdateProfile(name, email string) error {
 	if email == "" {
 		return errors.New("email cannot be empty")
 	}
-	u.FullName = name
+	u.ProfileName = name
 	u.EmailAddress = email
 	return nil
 }
 
 func NewUser(name, email string, age int, isActive bool) *User {
 	return &User{
-		FullName:     name,
+		ProfileName:  name,
 		EmailAddress: email,
 		Age:          age,
 		IsActive:     isActive,
@@ -44,8 +44,8 @@ func NewUser(name, email string, age int, isActive bool) *User {
 }
 
 func (u *User) GetDisplayName() string {
-	if u.FullName == "" {
+	if u.ProfileName == "" {
 		return "Anonymous"
 	}
-	return u.FullName
+	return u.ProfileName
 }
