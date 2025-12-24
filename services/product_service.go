@@ -27,6 +27,8 @@ func (s *ProductService) AddProduct(name string, price float64, sku string) (*mo
 	if err != nil {
 		return nil, err
 	}
+	y := s.xy(product)
+	println(y)
 	return product, nil
 }
 
