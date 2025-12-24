@@ -12,4 +12,7 @@ func main() {
 	
 	diff := utils.Subtract(10, 5)
 	fmt.Printf("Difference: %d\n", diff)
+
+	quotient := utils.Divide(10, 5)
+	fmt.Printf("Quotient: %d\n", quotient)
 }
