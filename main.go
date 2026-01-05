@@ -9,4 +9,8 @@ import (
 func main() {
 	result := utils.Add(10, 5)
 	fmt.Printf("Initial Result: %d\n", result)
+
+	subResult := utils.Subtract(10, 5)
+	fmt.Printf("Subtracted Result: %d\n", subResult)
 }
+
