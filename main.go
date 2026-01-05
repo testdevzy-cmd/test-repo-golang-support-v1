@@ -12,5 +12,9 @@ func main() {
 
 	subResult := utils.Subtract(10, 5)
 	fmt.Printf("Subtracted Result: %d\n", subResult)
+
+	calc := &utils.Calculator{}
+	mulResult := calc.Multiply(10, 5)
+	fmt.Printf("Multiplied Result: %d\n", mulResult)
 }
 
