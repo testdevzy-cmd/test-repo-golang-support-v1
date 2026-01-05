@@ -1,8 +1,13 @@
 package utils
 
+
 type Operator interface {
 	Multiply(a, b int) int
 }
+
+
+type Number int
+
 
 type Calculator struct {
 	LastResult int
