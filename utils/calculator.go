@@ -1,5 +1,8 @@
 package utils
 
+type Operator interface {
+	Multiply(a, b int) int
+}
 
 type Calculator struct {
 	LastResult int
@@ -11,3 +14,4 @@ func (c *Calculator) Multiply(a, b int) int {
 	c.LastResult = result
 	return result
 }
+

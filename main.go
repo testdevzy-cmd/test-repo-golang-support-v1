@@ -16,5 +16,10 @@ func main() {
 	calc := &utils.Calculator{}
 	mulResult := calc.Multiply(10, 5)
 	fmt.Printf("Multiplied Result: %d\n", mulResult)
+
+
+	var op utils.Operator = calc
+	interfaceResult := op.Multiply(6, 7)
+	fmt.Printf("Interface Result: %d\n", interfaceResult)
 }
 
