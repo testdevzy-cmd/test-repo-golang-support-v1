@@ -20,3 +20,8 @@ func (c *Calculator) Multiply(a, b int) int {
 	return result
 }
 
+func Square(n Number) Number {
+	return n * n
+}
+
+
