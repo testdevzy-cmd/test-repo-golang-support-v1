@@ -9,6 +9,7 @@ import (
 const (
 	TestConst      = "verified"
 	TestConstCount = 100
+	EmbeddingTest  = "incremental_v1"
 )
 
 // Var block for verification
