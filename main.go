@@ -2,23 +2,39 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/test-repo/test-repo-golang-support-v1/utils"
+)
+
+var (
+	globalCounter int
+	appName       string = "GraphTester"
 )
 
 func main() {
-	fmt.Println("=== Go Application Started ===")
+	result := utils.Add(10, 5)
+	fmt.Printf("Initial Result: %d\n", result)
 
-	user := NewUser("Alice", "alice@example.com", 30)
-	fmt.Printf("Created user: %+v\n", user)
+	subResult := utils.Subtract(10, 5)
+	fmt.Printf("Subtracted Result: %d\n", subResult)
 
-	isValid := ValidateEmail(user.Email)
-	fmt.Printf("Email valid: %t\n", isValid)
+	calc := &utils.Calculator{}
+	mulResult := calc.Multiply(10, 5)
+	fmt.Printf("Multiplied Result: %d\n", mulResult)
+	var op utils.Operator = calc
+	interfaceResult := op.Multiply(6, 7)
+	fmt.Printf("Interface Result: %d\n", interfaceResult)
 
-	greeting := FormatGreeting(user.Name)
-	fmt.Printf("%s\n", greeting)
+	var num utils.Number = 100
+	fmt.Printf("Number type: %d\n", num)
 
-	nums := []int{1, 2, 3, 4, 5}
-	total := CalculateSum(nums)
-	fmt.Printf("Sum of numbers: %d\n", total)
+	fmt.Printf("Max Iterations: %d\n", utils.MaxIterations)
+	fmt.Printf("Pi: %.5f\n", utils.Pi)
+	globalCounter = 42
+	fmt.Printf("App: %s, Counter: %d\n", appName, globalCounter)
 
-	fmt.Println("=== Application Complete ===")
+	squared := utils.Square(8)
+	fmt.Printf("Square of 8: %d\n", squared)
 }
+
+
