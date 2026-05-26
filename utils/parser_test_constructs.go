@@ -8,8 +8,8 @@ import (
 // Const block for verification
 const (
 	TestConst      = "verified"
-	TestConstCount = 100
-	EmbeddingTest  = "incremental_v1"
+	TestConstCount = 101
+	EmbeddingTest  = "incremental_v2"
 )
 
 // Var block for verification
